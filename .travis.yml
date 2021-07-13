@@ -1,7 +1,0 @@
-language: csharp
-dotnet: 3.1.410
-mono: none
-solution: RiceNet.sln
-script:
-  - dotnet restore
-  - dotnet test
