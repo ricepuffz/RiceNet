@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace RiceNet
 {
@@ -27,7 +28,12 @@ namespace RiceNet
             IPAddress localAddress = IPAddress.Parse(SERVER_IP);
             listener = new TcpListener(localAddress, port);
 
-            ListenLoop();
+            new Thread(new ThreadStart(ListenLoop)).Start();
+        }
+
+        public int AcceptedClientsCount()
+        {
+            return acceptedClients.Count;
         }
 
         public AcceptedClient GetAcceptedClient(int ID)
@@ -38,14 +44,10 @@ namespace RiceNet
         public void Stop()
         {
             running = false;
-            try
-            {
-                listener.Stop();
-            }
-            catch (SocketException)
-            {
-                Console.WriteLine("SocketException thrown due to Server stop, this should be totally fine");
-            }
+            listener.Stop();
+
+            foreach (Client client in acceptedClients)
+                client.Close();
         }
 
         private void ListenLoop()
@@ -54,12 +56,17 @@ namespace RiceNet
 
             while (running)
             {
-                TcpClient client = listener.AcceptTcpClient();
-                acceptedClients.Add(new AcceptedClient(client, NextClientID));
+                try
+                {
+                    TcpClient client = listener.AcceptTcpClient();
+                    acceptedClients.Add(new AcceptedClient(client, NextClientID));
+                }
+                catch (SocketException) when (!running)
+                {
+                    if (running == false)
+                        Console.WriteLine("SocketException thrown due to Server stop, this should be totally fine");
+                }
             }
-
-            foreach (Client client in acceptedClients)
-                client.Close();
         }
     }
 }
