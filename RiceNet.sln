@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiceNet", "RiceNet\RiceNet.csproj", "{7ED4AEB6-7FB4-4E2D-BFA9-7581F8483154}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiceNetTests", "RiceNetTests\RiceNetTests.csproj", "{3980B20A-35AB-4DED-9BB9-A68A7FE19249}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7ED4AEB6-7FB4-4E2D-BFA9-7581F8483154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ED4AEB6-7FB4-4E2D-BFA9-7581F8483154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ED4AEB6-7FB4-4E2D-BFA9-7581F8483154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ED4AEB6-7FB4-4E2D-BFA9-7581F8483154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3980B20A-35AB-4DED-9BB9-A68A7FE19249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3980B20A-35AB-4DED-9BB9-A68A7FE19249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3980B20A-35AB-4DED-9BB9-A68A7FE19249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3980B20A-35AB-4DED-9BB9-A68A7FE19249}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33DB1F02-97EA-4015-9613-B2A4503282B5}
+	EndGlobalSection
+EndGlobal
