@@ -4,6 +4,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using RiceLog;
 
 namespace RiceNet
 {
@@ -25,10 +26,16 @@ namespace RiceNet
 
         public Server(int port)
         {
+            Logger.Log($"Starting server on port {port}...");
+
             IPAddress localAddress = IPAddress.Parse(SERVER_IP);
             listener = new TcpListener(localAddress, port);
 
+            Logger.Log("Server successfully started");
+
             new Thread(new ThreadStart(ListenLoop)).Start();
+
+            Logger.Log($"Server is now listening on port {port}");
         }
 
         public int AcceptedClientsCount()
@@ -43,11 +50,19 @@ namespace RiceNet
 
         public void Stop()
         {
+            Logger.Log("Server stopping...");
+
             running = false;
             listener.Stop();
 
+            Logger.Log("Closing client connections...");
+
             foreach (AcceptedClient client in acceptedClients)
                 client.Client.Close();
+
+            Logger.Log("Client connections closed");
+
+            Logger.Log("Server stopped");
         }
 
         private void ListenLoop()
@@ -59,12 +74,13 @@ namespace RiceNet
                 try
                 {
                     TcpClient client = listener.AcceptTcpClient();
+                    Logger.Log($"Accepted new client connection with ID {NextClientID}");
                     acceptedClients.Add(new AcceptedClient(client, NextClientID));
                 }
                 catch (SocketException) when (!running)
                 {
                     if (running == false)
-                        Console.WriteLine("SocketException thrown due to Server stop, this should be totally fine");
+                        Logger.Log("SocketException thrown due to Server stop, this should be totally fine", Logger.VERBOSITY.WARN);
                 }
             }
         }
