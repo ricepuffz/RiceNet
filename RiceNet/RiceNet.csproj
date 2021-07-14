@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="OpenCover" Version="4.7.1221" />
-    <PackageReference Include="RiceLog" Version="1.0.0" />
+    <PackageReference Include="RiceLog" Version="1.0.1" />
   </ItemGroup>
 
 </Project>
