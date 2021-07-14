@@ -46,8 +46,8 @@ namespace RiceNet
             running = false;
             listener.Stop();
 
-            foreach (Client client in acceptedClients)
-                client.Close();
+            foreach (AcceptedClient client in acceptedClients)
+                client.Client.Close();
         }
 
         private void ListenLoop()
