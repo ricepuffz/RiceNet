@@ -6,13 +6,15 @@ using System.Net.Sockets;
 
 namespace RiceNet
 {
-    public class AcceptedClient : Client
+    public class AcceptedClient
     {
         public int ID { get; private set; }
+        public Client Client { get; private set; }
 
-        public AcceptedClient(TcpClient client, int id) : base(client)
+        public AcceptedClient(TcpClient client, int id)
         {
             ID = id;
+            Client = new Client(client);
         }
     }
 }
